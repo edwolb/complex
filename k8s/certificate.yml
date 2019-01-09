@@ -1,0 +1,25 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+ name: outward-ca-tls
+spec:
+ secretName: outward-ca
+ issuerRef:
+  name: letsencrypt-prod
+  kind: ClusterIssuer
+ commonName: outward.ca
+ dnsNames:
+ -
+  outward.ca
+ -
+  www.outward.ca
+ acme:
+  config:
+   - 
+    http01:
+     ingressClass: nginx
+    domains:
+    -
+     outward.ca
+    -
+     www.outward.ca
